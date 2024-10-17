@@ -1,8 +1,9 @@
 
 # pyberdata <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[<img
+src="https://img.shields.io/badge/lifecycle-experimental-orange.svg"
+class="quarto-discovered-preview-image" alt="Lifecycle: experimental" />](https://www.tidyverse.org/lifecycle/#experimental)
 [![](https://img.shields.io/github/last-commit/Bureau-for-Economic-Research/berdata.svg)](https://github.com/Bureau-for-Economic-Research/pyberdata/commits/develop)
 
 The
@@ -103,17 +104,13 @@ def setup_logger():
     logger = logging.getLogger("pyberdata")
     logger.setLevel(logging.DEBUG)
     # logger.setLevel(logging.INFO)
-
     # create console handler and set level to debug
     ch = logging.StreamHandler()
     ch.setLevel(logging.DEBUG)
-
     # create formatter
     formatter = logging.Formatter("%(asctime)s [%(levelname)s] %(name)s: %(message)s")
-
     # add formatter to ch
     ch.setFormatter(formatter)
-
     # add ch to logger
     logger.addHandler(ch)
 
@@ -121,13 +118,12 @@ def setup_logger():
 def main():
     setup_logger()
     print(get_distribution("pyberdata").version)
-
     client = BERClient(apikey = config("BERDATA_API"))
-    client = BERClient(apikey = "test")
-
     time_series_code = ["KBP7096B", "KBP7008Q", "KBP7203M"]
     out = client.get_data(time_series_code, output_format = "codes")
     out = client.get_data(time_series_code, output_format = "names")
+
+    # Experimental
     out = client.get_data(time_series_code, output_format = "nested")
 
     return out
