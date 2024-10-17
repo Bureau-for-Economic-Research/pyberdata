@@ -118,9 +118,7 @@ def setup_logger():
 def main():
     setup_logger()
     print(get_distribution("pyberdata").version)
-
     client = BERClient(apikey = config("BERDATA_API"))
-
     time_series_code = ["KBP7096B", "KBP7008Q", "KBP7203M"]
     out = client.get_data(time_series_code, output_format = "codes")
     out = client.get_data(time_series_code, output_format = "names")

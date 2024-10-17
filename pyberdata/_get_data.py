@@ -45,6 +45,12 @@ def get_data(self, time_series_code: str, output_format: str = "names") -> pl.Da
     payload = json.dumps(payload_dict)
     log.debug(f"Querying with parameters: [{payload}]")
 
+    payload_dict = {
+            "data": time_series_code,
+            "interface": self.interface,
+            "platform": self.platform,
+            "apikey": self.apikey,
+        }
     payload = json.dumps(payload_dict)
 
     timeseriescode_response = requests.post(
