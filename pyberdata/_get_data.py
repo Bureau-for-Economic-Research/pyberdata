@@ -34,16 +34,18 @@ def get_data(self, time_series_code: str, output_format: str = "names") -> pl.Da
 
     url = "https://api.beranalytics.co.za/"
 
-    payload = json.dumps(
-        {
+    payload_dict = {
             "data": time_series_code,
             "interface": self.interface,
             "platform": self.platform,
             "apikey": self.apikey,
         }
-    )
 
+    payload_dict.popitem()
+    payload = json.dumps(payload_dict)
     log.debug(f"Querying with parameters: [{payload}]")
+
+    payload = json.dumps(payload_dict)
 
     timeseriescode_response = requests.post(
         f"{url}/timeseriescode",
